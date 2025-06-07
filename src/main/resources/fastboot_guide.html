@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Руководство по Fastboot</title>
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; padding: 20px; }
+        h1 { color: #3f8ee6; }
+        .command { background: #f0f0f0; padding: 10px; border-radius: 5px; }
+    </style>
+</head>
+<body>
+<h1>Команды Fastboot</h1>
+<p>Fastboot — это режим для низкоуровневой настройки Android-устройства.</p>
+
+<h2>Подготовка</h2>
+<ul>
+    <li>Включите Fastboot-режим: <code>adb reboot bootloader</code>.</li>
+    <li>Проверьте подключение: <code>fastboot devices</code>.</li>
+</ul>
+
+<h2>Основные команды</h2>
+<ul>
+    <li><div class="command">fastboot flash boot boot.img</div> — Прошивка загрузчика.</li>
+    <li><div class="command">fastboot erase cache</div> — Очистка кэша.</li>
+    <li><div class="command">fastboot oem unlock</div> — Разблокировка загрузчика.</li>
+    <li><div class="command">fastboot reboot</div> — Перезагрузка устройства.</li>
+</ul>
+
+<h2>Дополнительные советы</h2>
+<p>Убедитесь, что Fastboot установлен в системе и доступен в `PATH`. Для Windows: добавьте `fastboot.exe` в переменную окружения `PATH`.</p>
+
+<p><a href="help.html" onclick="window.close()">Закрыть</a></p>
+</body>
+</html>

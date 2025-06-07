@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Руководство по ADB</title>
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; padding: 20px; }
+        h1 { color: #3f8ee6; }
+        .command { background: #f0f0f0; padding: 10px; border-radius: 5px; }
+    </style>
+</head>
+<body>
+<h1>Команды ADB</h1>
+<p>ADB (Android Debug Bridge) — это мощный инструмент для взаимодействия с Android-устройством.</p>
+
+<h2>Базовые команды</h2>
+<ul>
+    <li><div class="command">adb devices</div> — Показывает список подключенных устройств.</li>
+    <li><div class="command">adb shell</div> — Открывает терминал устройства.</li>
+    <li><div class="command">adb install app.apk</div> — Устанавливает приложение.</li>
+    <li><div class="command">adb logcat</div> — Просмотр логов системы.</li>
+</ul>
+
+<h2>Работа с файлами</h2>
+<ul>
+    <li><div class="command">adb pull /sdcard/file.txt</div> — Копирует файл с устройства.</li>
+    <li><div class="command">adb push file.txt /sdcard/</div> — Загружает файл на устройство.</li>
+</ul>
+
+<h2>Wi-Fi подключение</h2>
+<ol>
+    <li>Подключите устройство по USB.</li>
+    <li>Выполните <code>adb tcpip 5555</code>.</li>
+    <li>Отключите USB-кабель.</li>
+    <li>Запустите <code>adb connect <IP-адрес>:5555</code>.</li>
+</ol>
+
+<p><a href="help.html" onclick="window.close()">Закрыть</a></p>
+</body>
+</html>

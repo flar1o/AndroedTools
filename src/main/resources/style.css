@@ -1,0 +1,246 @@
+.root {
+    -fx-base: #f0f0f0;
+    -fx-background: #ffffff;
+    -fx-control-inner-background: derive(-fx-base, 35%);
+    -fx-accent: #3f8ee6;
+    -fx-default-button: #3f8ee6;
+    -fx-focus-color: #3f8ee6;
+    -fx-faint-focus-color: #3f8ee622;
+}
+
+/* Заголовок приложения */
+.header {
+    -fx-background-color: #ffffff;
+    -fx-padding: 10;
+    -fx-border-color: #e0e0e0;
+    -fx-border-width: 0 0 1 0;
+}
+
+.title {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #000000;
+    -fx-padding: 0 0 0 10;
+}
+
+.header-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: #000000;
+    -fx-padding: 5 10;
+}
+
+.header-button:hover {
+    -fx-background-color: #e0e0e0;
+}
+
+/* Боковая панель */
+.sidebar {
+    -fx-background-color: #f5f5f5;
+    -fx-border-color: #e0e0e0;
+    -fx-border-width: 0 1 0 0;
+    -fx-spacing: 0;
+}
+
+.device-info-panel {
+    -fx-spacing: 10;
+    -fx-padding: 15;
+    -fx-alignment: CENTER;
+    -fx-background-color: #f5f5f5;
+    -fx-border-color: #e0e0e0;
+    -fx-border-width: 0 0 1 0;
+    -fx-border-radius: 0;
+    -fx-background-radius: 0;
+}
+
+.device-model {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #000000;
+    -fx-padding: 5 0;
+}
+
+.device-detail {
+    -fx-font-size: 12px;
+    -fx-text-fill: #666666;
+    -fx-padding: 2 0;
+}
+
+.connection-status.connected {
+    -fx-text-fill: #34a853;
+}
+
+/* Навигационное меню */
+.nav-menu {
+    -fx-background-color: #f5f5f5;
+}
+
+.nav-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: #000000;
+    -fx-font-size: 14px;
+    -fx-alignment: CENTER_LEFT;
+    -fx-content-display: LEFT;
+    -fx-graphic-text-gap: 15;
+    -fx-padding: 15 20;
+    -fx-border-width: 0;
+    -fx-border-insets: 0;
+    -fx-background-insets: 0;
+    -fx-max-width: Infinity;
+    -fx-min-height: 50px;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 0, 2);
+}
+
+.nav-button:hover {
+    -fx-background-color: #e0e0e0;
+}
+
+.nav-button:focused, .nav-button:selected {
+    -fx-background-color: #3f8ee6;
+    -fx-text-fill: white;
+}
+
+.nav-button > .graphic {
+    -fx-fill: #000000;
+}
+
+.nav-button:focused > .graphic,
+.nav-button:selected > .graphic {
+    -fx-fill: white;
+}
+
+.section-title {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #000000;
+    -fx-padding: 10 15;
+}
+
+.device-info-text {
+    -fx-background-color: transparent;
+    -fx-text-fill: #000000;
+    -fx-font-family: monospace;
+}
+
+.status-bar {
+    -fx-background-color: #f5f5f5;
+    -fx-border-color: #e0e0e0;
+    -fx-border-width: 1 0 0 0;
+}
+
+.status-message {
+    -fx-text-fill: #666666;
+    -fx-font-size: 12px;
+}
+
+.adb-log {
+    -fx-text-fill: #666666;
+    -fx-font-size: 12px;
+    -fx-font-family: monospace;
+}
+
+.metric-box {
+    -fx-spacing: 5;
+    -fx-padding: 15;
+    -fx-background-color: #f5f5f5;
+    -fx-background-radius: 5;
+    -fx-min-width: 180px;
+    -fx-alignment: CENTER;
+}
+
+.metric-title {
+    -fx-font-size: 14px;
+    -fx-text-fill: #666666;
+    -fx-padding: 0 0 5 0;
+}
+
+.metric-value {
+    -fx-font-size: 14px;
+    -fx-text-fill: #000000;
+    -fx-padding: 5 0 0 0;
+}
+
+.battery-button {
+    -fx-font-size: 14px;
+    -fx-text-fill: #ffffff;
+    -fx-pref-width: 120px;
+    -fx-pref-height: 24px;
+    -fx-background-radius: 8;
+    -fx-cursor: hand;
+}
+
+.battery-low {
+    -fx-background-color: #ff5252;
+}
+
+.battery-medium {
+    -fx-background-color: #ff9800;
+}
+
+.battery-high {
+    -fx-background-color: #4CAF50;
+}
+
+.ram-chart, .cpu-chart {
+    -fx-pref-height: 250;
+    -fx-max-height: 250;
+}
+
+.history-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: #000000;
+    -fx-font-size: 12px;
+    -fx-padding: 0 5;
+}
+.header-button-active {
+    -fx-background-color: #3f8ee6;
+    -fx-text-fill: white;
+    -fx-effect: dropshadow(gaussian, #3f8ee6, 10, 0.5, 0, 0);
+}
+
+/* Стили для всплывающего окна */
+.dialog-pane {
+    -fx-background-color: white;
+    -fx-border-color: #007bff;
+    -fx-border-width: 2px;
+}
+
+.dialog-header {
+    -fx-background-color: #007bff;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+.dialog-content {
+    -fx-padding: 20px;
+}
+
+.web-view {
+    -fx-min-width: 500px;
+    -fx-min-height: 400px;
+}
+
+.tool-button {
+    -fx-background-color: #3f8ee6;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-padding: 10 20;
+    -fx-background-radius: 8;
+    -fx-effect: dropshadow(gaussian, #3f8ee6, 10, 0.5, 0, 0);
+    -fx-cursor: hand;
+}
+
+.tool-button:hover {
+    -fx-background-color: #2d6bb5;
+}
+
+.tool-button:pressed {
+    -fx-background-color: #1f4d8c;
+}
+
+/* Стили для CPU и RAM графиков */
+.cpu-chart .chart-series-line,
+.ram-chart .chart-series-line {
+    -fx-stroke: #4CAF50;
+    -fx-stroke-width: 2px;
+}

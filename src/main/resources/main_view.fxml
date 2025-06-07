@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.collections.FXCollections?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.androedtools.MainController"
+            stylesheets="@style.css">
+
+    <!-- Верхняя панель -->
+    <top>
+        <HBox styleClass="header" alignment="CENTER_LEFT">
+            <ImageView fitHeight="64" fitWidth="64" styleClass="sub-device-icon">
+                <image>
+                    <Image url="@icon.png"/>
+                </image>
+            </ImageView>
+            <Label text="Androed Tools" styleClass="title"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <HBox spacing="5" alignment="CENTER">
+                <Button fx:id="wifiConnectBtn" text="Отладка по сети" styleClass="wifi-button" onAction="#connectViaWifi"/>
+                <Button fx:id="wifiDisconnectBtn" text="Прекратить отладку" styleClass="wifi-button" onAction="#disconnectWifi" disable="true"/>
+            </HBox>
+            <Button text="Помощь" styleClass="header-button" onAction="#showHelpDialog"/>
+        </HBox>
+    </top>
+
+    <!-- Центральная область -->
+    <center>
+        <SplitPane dividerPositions="0.2">
+            <!-- Боковая панель -->
+            <VBox styleClass="sidebar" minWidth="255" maxWidth="255">
+                <VBox styleClass="device-info-panel">
+                    <ImageView fx:id="deviceIcon" fitHeight="64" fitWidth="64" styleClass="device-icon"/>
+                    <Label fx:id="deviceModel" styleClass="device-model" text="Не подключено"/>
+                    <Label fx:id="androidVersion" styleClass="device-detail"/>
+                    <Label fx:id="serialNumber" styleClass="device-detail"/>
+                    <Label fx:id="connectionStatus" styleClass="connection-status" text="Отключено"/>
+                </VBox>
+
+                <VBox styleClass="nav-menu">
+                    <Button fx:id="overviewBtn" text="Обзор" styleClass="nav-button" onAction="#showOverview" maxWidth="Infinity">
+                        <graphic>
+                            <ImageView fitHeight="24" fitWidth="24">
+                                <image>
+                                    <Image url="@icons/overview.png"/>
+                                </image>
+                            </ImageView>
+                        </graphic>
+                    </Button>
+                    <Button fx:id="appsBtn" text="Приложения" styleClass="nav-button" onAction="#showApps" maxWidth="Infinity">
+                        <graphic>
+                            <ImageView fitHeight="24" fitWidth="24">
+                                <image>
+                                    <Image url="@icons/apps.png"/>
+                                </image>
+                            </ImageView>
+                        </graphic>
+                    </Button>
+                    <Button fx:id="toolsBtn" text="Инструменты" styleClass="nav-button" onAction="#showTools" maxWidth="Infinity">
+                        <graphic>
+                            <ImageView fitHeight="24" fitWidth="24">
+                                <image>
+                                    <Image url="@icons/tools.png"/>
+                                </image>
+                            </ImageView>
+                        </graphic>
+                    </Button>
+                    <Button fx:id="consoleBtn" text="Консоль" styleClass="nav-button" onAction="#showConsole" maxWidth="Infinity">
+                        <graphic>
+                            <ImageView fitHeight="24" fitWidth="24">
+                                <image>
+                                    <Image url="@icons/console.png"/>
+                                </image>
+                            </ImageView>
+                        </graphic>
+                    </Button>
+                </VBox>
+            </VBox>
+
+            <!-- Основное содержимое и панель устройства справа -->
+            <SplitPane orientation="HORIZONTAL" dividerPositions="0.75">
+                <!-- Контент -->
+                <StackPane fx:id="contentPane" styleClass="content-pane">
+                    <VBox fx:id="overviewContent" styleClass="content-section" spacing="15">
+                        <HBox spacing="15">
+                            <!-- Левая часть с графиками -->
+                            <VBox spacing="15" HBox.hgrow="ALWAYS">
+                                <HBox styleClass="metrics-container" maxHeight="800">
+                                    <VBox styleClass="metric-box">
+                                        <Label text="Использование RAM (MB)" styleClass="metric-title"/>
+                                        <LineChart fx:id="ramChart" styleClass="ram-chart" legendVisible="false">
+                                            <xAxis>
+                                                <NumberAxis fx:id="ramXAxis" label="Время (сек)" lowerBound="0" upperBound="60" tickUnit="10"/>
+                                            </xAxis>
+                                            <yAxis>
+                                                <NumberAxis label="MB" lowerBound="0"/>
+                                            </yAxis>
+                                        </LineChart>
+                                    </VBox>
+                                    <VBox styleClass="metric-box">
+                                        <Label text="Загрузка CPU" styleClass="metric-title"/>
+                                        <LineChart fx:id="cpuChart" styleClass="cpu-chart">
+                                            <xAxis>
+                                                <NumberAxis side="BOTTOM" label="Время (сек)"/>
+                                            </xAxis>
+                                            <yAxis>
+                                                <NumberAxis fx:id="cpuYAxis" side="LEFT" lowerBound="0" upperBound="100"/>
+                                            </yAxis>
+                                        </LineChart>
+                                        <VBox fx:id="cpuExtraBox" visible="false" managed="false" alignment="CENTER">
+                                            <Label text="Средняя нагрузка CPU:" styleClass="cpu-load-title"/>
+                                            <HBox spacing="10" alignment="CENTER">
+                                            </HBox>
+                                            <ProgressBar fx:id="cpuProgressBar" styleClass="cpu-progress" maxWidth="Infinity"/>
+                                        </VBox>
+                                    </VBox>
+                                </HBox>
+                                <VBox styleClass="metric-box">
+                                    <Label text="Хранилище" styleClass="metric-title"/>
+                                    <ProgressBar fx:id="storageBar" styleClass="metric-progress" progress="0"/>
+                                    <Label fx:id="storageLabel" styleClass="metric-value" text="0 / 0 GB"/>
+                                </VBox>
+                                <VBox styleClass="metric-box">
+                                    <Label text="Батарея" styleClass="metric-title"/>
+                                    <Button fx:id="batteryButton"
+                                            text="Заряд: 0%"
+                                            onAction="#onBatteryClicked"
+                                            styleClass="battery-button"/>
+                                </VBox>
+                            </VBox>
+
+                            <!-- Правая часть - Информация об устройстве -->
+                            <VBox styleClass="device-info-box" spacing="10" alignment="TOP_CENTER" minWidth="300" maxWidth="300" prefWidth="300">
+                                <Label text="Информация об устройстве" styleClass="section-title"/>
+                                <TextArea fx:id="deviceInfoText" styleClass="device-info-text" editable="false" wrapText="true" minHeight="300" focusTraversable="false"/>
+                            </VBox>
+                        </HBox>
+                    </VBox>
+
+
+                    <VBox fx:id="appsContent" styleClass="content-section" spacing="10" visible="false" alignment="TOP_LEFT">
+                    </VBox>
+
+                    <VBox fx:id="toolsContent" styleClass="content-section" visible="false">
+                        <Label text="Инструменты" styleClass="section-title"/>
+                        <GridPane fx:id="toolsGrid" hgap="20" vgap="20" alignment="CENTER">
+                            <!-- Кнопки будут добавляться динамически -->
+                        </GridPane>
+                    </VBox>
+
+                    <VBox fx:id="consoleContent" styleClass="content-section" visible="false">
+                        <Label text="ADB Консоль" styleClass="section-title"/>
+                        <HBox spacing="10" alignment="CENTER_LEFT">
+                            <Button fx:id="adbModeBtn" text="ADB" styleClass="header-button"/>
+                            <Button fx:id="fastbootModeBtn" text="Fastboot" styleClass="header-button"/>
+                        </HBox>
+                    </VBox>
+                </StackPane>
+            </SplitPane>
+        </SplitPane>
+    </center>
+
+    <!-- Статус бар -->
+    <bottom>
+        <VBox styleClass="status-bar">
+            <HBox styleClass="status-line">
+                <Label fx:id="statusMessage" text="Готов" styleClass="status-message"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Label fx:id="adbLog" text="ADB: Не подключено" styleClass="adb-log"/>
+                <Button text="Показать лог" onAction="#showLogDialog" styleClass="history-button" />
+            </HBox>
+        </VBox>
+    </bottom>
+</BorderPane>
