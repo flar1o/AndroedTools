@@ -8,7 +8,7 @@ Androed Tools предоставляет визуальный интерфейс
 ---
 
 ## 🔧 Требования  
-- **Java 21** (установите с [Oracle JDK](https://www.oracle.com/java/technologies/downloads/)  или [OpenJDK](https://adoptium.net/))   
+- **Java SE 21** (установите с [Oracle](https://www.oracle.com/java/technologies/javase/jdk21-archive-downloads.html))   
 - Поддержка Windows/Linux/macOS  
 - Android Debug Bridge (ADB) встроен в приложение  
 
