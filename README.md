@@ -56,11 +56,6 @@ MIT License - см. файл [LICENSE](LICENSE) для деталей.
 
 ---
 
-### Примеры скриншотов  
-![Интерфейс Androed Tools](screenshots/main_window.png)  
-*Главный экран с мониторингом устройства*
-
----
 
 ### Благодарности  
 - Использует [DDMLib](https://github.com/android/ddmlib)  для работы с ADB  
