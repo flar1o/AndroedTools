@@ -60,7 +60,6 @@ MIT License - см. файл [LICENSE](LICENSE) для деталей.
 
 ### Благодарности  
 - Спасибо человеку, который разработал [scrcpy](https://github.com/Genymobile/scrcpy)
-- Использует [DDMLib](https://github.com/android/ddmlib)  для работы с ADB  
 - Огромное спасибо Qwen за основную работу
 - Спасибо ChatGPT за реализацию выгрузки в exe файл и главный логотип
 - Спасибо DeepSeek за дизайн
